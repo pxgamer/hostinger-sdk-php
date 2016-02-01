@@ -66,6 +66,18 @@ class HostingerApi
     }
 
     /**
+     * @param string $email
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function clientPasswordRemind($email){
+        $params = array(
+            'email' => $email,
+        );
+        return $this->make_call('v1/client/password-remind', 'POST', $params);
+    }
+
+    /**
      * @param string $first_name
      * @param string $password
      * @param string $email
