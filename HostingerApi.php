@@ -62,7 +62,7 @@ class HostingerApi
             'email' => $email,
             'password' => $password,
         );
-        return $this->make_call('v1/client/get-by-email-password', 'GET', $params);
+        return $this->make_call('v1/client/get-by-email-password', 'POST', $params);
     }
 
     /**
