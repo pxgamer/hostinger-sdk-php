@@ -171,7 +171,7 @@ class HostingerApi
         $result = $this->get_url($this->api_url.$cmd, $method, $post_fields, $this->username, $this->password);
         $result = json_decode($result, 1);
         if (isset($result['error']['message']) && !empty($result['error']['message'])) {
-            throw new \HostingerApiException($result['error']['message'], $result['error']['code']);
+            throw new \HostingerApiException($result['error']['message']);
         }
         return $result['result'];
     }
