@@ -52,6 +52,20 @@ class HostingerApi
     }
 
     /**
+     * @param string $email
+     * @param string $password
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function clientGetByEmailAndPassword($email, $password){
+        $params = array(
+            'email' => $email,
+            'password' => $password,
+        );
+        return $this->make_call('v1/client/get-by-email-password', 'GET', $params);
+    }
+
+    /**
      * @param string $first_name
      * @param string $password
      * @param string $email
