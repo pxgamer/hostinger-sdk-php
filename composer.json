@@ -1,7 +1,10 @@
 {
     "name": "hostinger/hostinger-sdk-php",
     "description": "Cpanel API",
-    "require": {},
+    "require": {
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
     "autoload": {
         "files": ["HostingerApi.php", "HostingerApiException.php"]
     }
