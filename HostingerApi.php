@@ -128,6 +128,26 @@ class HostingerApi
     }
 
     /**
+     * @param $cart
+     * @param $client
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function cartOrderCreate($cart, $client)
+    {
+//        return $this->make_call('URL PATH', 'POST', array($cart, $client));
+        return array(
+            'order' => array(
+                'id' => 1
+            ),
+            'invoice' => array(
+                'id' => 1,
+                'invoice_link' => ''
+            ),
+        );
+    }
+
+    /**
      * @param int $client_id
      * @param string $redirect
      * @return string Url to cpanel auto login
