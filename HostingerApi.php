@@ -165,6 +165,14 @@ class HostingerApi
     }
 
     /**
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function paymentGatewayGetList() {
+        return $this->make_call('v1/settings/payment-gateway-list', 'GET', array());
+    }
+
+    /**
      * @return string
      */
     private function getIp()
