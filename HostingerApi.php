@@ -135,16 +135,7 @@ class HostingerApi
      */
     public function cartOrderCreate($cart, $client)
     {
-//        return $this->make_call('URL PATH', 'POST', array($cart, $client));
-        return array(
-            'order' => array(
-                'id' => 1
-            ),
-            'invoice' => array(
-                'id' => 1,
-                'link' => 'https://example.com/invoice/123'
-            ),
-        );
+        return $this->make_call('v1/cart/', 'POST', array($cart, $client));
     }
 
     /**
