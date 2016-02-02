@@ -142,7 +142,7 @@ class HostingerApi
             ),
             'invoice' => array(
                 'id' => 1,
-                'invoice_link' => ''
+                'link' => 'https://example.com/invoice/123'
             ),
         );
     }
