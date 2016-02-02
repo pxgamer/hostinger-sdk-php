@@ -40,6 +40,15 @@ class HostingerApi
     }
 
     /**
+     * @param int $id
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function clientGetById($id){
+        return $this->make_call('v1/client/'.$id, 'GET', array());
+    }
+
+    /**
      * @param string $email
      * @return array
      * @throws HostingerApiException
@@ -116,6 +125,19 @@ class HostingerApi
         $params = array_merge($additionalParams, $params);
 
         return $this->make_call('v1/client', 'POST', $params);
+    }
+
+    /**
+     * @param int $client_id
+     * @param string $redirect
+     * @return string Url to cpanel auto login
+     * @throws HostingerApiException
+     */
+    public function clientGetAutoLoginUrl($client_id, $redirect = ''){
+        $params = array(
+            'r' => $redirect
+        );
+        return $this->make_call('v1/client/'.$client_id.'/login-url', 'GET', $params);
     }
 
     /**
