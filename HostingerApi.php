@@ -128,6 +128,21 @@ class HostingerApi
     }
 
     /**
+     * @param \Cart\Checkout $checkout
+     * @param string $gatewayCode
+     *
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function cartOrderCreate($checkout, $gatewayCode)
+    {
+        if (!$checkout instanceof \Cart\Checkout){
+            throw new HostingerApiException('invalid checkout');
+        }
+        return $this->make_call('v1/cart', 'POST', array('checkout'=> $checkout->toArray(), 'gateway_code' => $gatewayCode));
+    }
+
+    /**
      * @param int $client_id
      * @param string $redirect
      * @return string Url to cpanel auto login
