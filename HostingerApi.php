@@ -201,7 +201,7 @@ class HostingerApi
         $result = $this->get_url($this->api_url.$cmd, $method, $post_fields, $this->username, $this->password);
         $result = json_decode($result, 1);
         if (isset($result['error']['message']) && !empty($result['error']['message'])) {
-            throw new \HostingerApiException($result['error']['message']);
+            throw new HostingerApiException($result['error']['message']);
         }
         return $result['result'];
     }
@@ -248,10 +248,12 @@ class HostingerApi
         }
 
         $data = curl_exec($ch);
-        curl_close($ch);
         if ($data === false) {
-            throw new \HostingerApiException("Service is temporary unavailable.");
+            $error = curl_error($ch);
+            curl_close($ch);
+            throw new HostingerApiException("Request error: " . $error);
         }
+        curl_close($ch);
         return $data;
     }
 }
