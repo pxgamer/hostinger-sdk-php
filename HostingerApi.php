@@ -128,16 +128,18 @@ class HostingerApi
     }
 
     /**
-     * @param array $cartItemList
-     * @param int $clientId
+     * @param \Cart\Checkout $checkout
      * @param string $gatewayCode
      *
      * @return array
      * @throws HostingerApiException
      */
-    public function cartOrderCreate(array $cartItemList, $clientId, $gatewayCode)
+    public function cartOrderCreate($checkout, $gatewayCode)
     {
-        return $this->make_call('v1/cart', 'POST', array('cart'=> $cartItemList, 'client_id' => $clientId, 'gateway_code' => $gatewayCode));
+        if (!$checkout instanceof \Cart\Checkout){
+            throw new HostingerApiException('invalid checkout');
+        }
+        return $this->make_call('v1/cart', 'POST', array('checkout'=> $checkout->toArray(), 'gateway_code' => $gatewayCode));
     }
 
     /**
