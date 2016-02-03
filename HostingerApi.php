@@ -129,15 +129,15 @@ class HostingerApi
 
     /**
      * @param array $cartItemList
-     * @param int $client_id
-     * @param string $gateway
+     * @param int $clientId
+     * @param string $gatewayCode
      *
      * @return array
      * @throws HostingerApiException
      */
-    public function cartOrderCreate(array $cartItemList, $client_id, $gateway)
+    public function cartOrderCreate(array $cartItemList, $clientId, $gatewayCode)
     {
-        return $this->make_call('v1/cart', 'POST', array('cart'=> $cartItemList, 'client' => $client_id, 'gateway' => $gateway));
+        return $this->make_call('v1/cart', 'POST', array('cart'=> $cartItemList, 'client_id' => $clientId, 'gateway_code' => $gatewayCode));
     }
 
     /**
