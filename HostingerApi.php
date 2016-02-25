@@ -197,6 +197,14 @@ class HostingerApi
     }
 
     /**
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function oauthProviderGetList() {
+        return $this->make_call('v1/settings/oauth-list', 'GET', array());
+    }
+
+    /**
      * @return string
      */
     private function getIp()
