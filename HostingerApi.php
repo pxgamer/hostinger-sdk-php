@@ -49,6 +49,15 @@ class HostingerApi
     }
 
     /**
+     * @param $hash
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function clientGetByLoginHash($hash){
+        return $this->make_call('v1/client/get-by-hash/'.$hash, 'GET', array());
+    }
+
+    /**
      * @param string $email
      * @return array
      * @throws HostingerApiException
