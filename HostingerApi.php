@@ -200,8 +200,11 @@ class HostingerApi
      * @return array
      * @throws HostingerApiException
      */
-    public function oauthProviderGetList() {
-        return $this->make_call('v1/settings/oauth-list', 'GET', array());
+    public function oauthProviderGetList($redirect_url) {
+        $params = array(
+            'redirect' => $redirect_url
+        );
+        return $this->make_call('v1/settings/oauth-list', 'POST', $params);
     }
 
     /**
