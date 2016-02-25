@@ -197,6 +197,9 @@ class HostingerApi
     }
 
     /**
+     * @param string $redirect_url
+     * @danger ?hash={client.login.hash} will be added to $redirect_url after success social login
+     * @info use clientGetByLoginHash() to get returned client from social login
      * @return array
      * @throws HostingerApiException
      */
