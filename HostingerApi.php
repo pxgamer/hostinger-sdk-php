@@ -192,7 +192,7 @@ class HostingerApi
      */
     private function getIp()
     {
-        $address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        $address = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null;
         if (is_string($address)) {
             if (strpos($address, ',') !== false) {
                 $address = end(explode(',', $address));
