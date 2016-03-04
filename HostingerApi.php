@@ -137,6 +137,46 @@ class HostingerApi
     }
 
     /**
+     * @param $client_id
+     * @param $title
+     * @param array $ns_list = array(
+            'ns1.custom.com',
+            'ns2.custom.com',
+            'ns3.custom.com',
+            'ns4.custom.com',
+     * ) or EMPTY ARRAY
+     * @param array $contact = array(
+            'email'         => 'value', // REQUIRED
+            'first_name'    => 'value', // REQUIRED
+            'last_name'     => 'value', // REQUIRED
+            'address_1'     => 'value', // REQUIRED
+            'address_2'     => 'value',
+            'company'       => 'value',
+            'city'          => 'value', // REQUIRED
+            'state'         => 'value', // REQUIRED
+            'zip'           => 'value', // REQUIRED
+            'country'       => 'value', // REQUIRED
+            'phone'         => 'value', // REQUIRED
+            'phone_cc'      => 'value', // REQUIRED
+            'vat_code'      => 'value',
+            'passport'      => 'value',
+            'birth_date'    => 'value',
+            'cpf'           => 'value',
+     * )
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function clientWhoisProfileCreate($client_id, $title, array $ns_list, array $contact) {
+        $params = array(
+            'client_id' => $client_id,
+            'title' => $title,
+            'ns_list' => $ns_list,
+            'contact' => $contact,
+        );
+        return $this->make_call('v1/client/create-whois-profile', 'POST', $params);
+    }
+
+    /**
      * @param \Cart\Checkout $checkout
      * @param string $gatewayCode
      *
