@@ -145,7 +145,7 @@ class HostingerApi
             'ns3.custom.com',
             'ns4.custom.com',
      * ) or EMPTY ARRAY
-     * @param array $contact = array(
+     * @param array $contact['owner'] = array(
             'email'         => 'value', // REQUIRED
             'first_name'    => 'value', // REQUIRED
             'last_name'     => 'value', // REQUIRED
@@ -167,6 +167,41 @@ class HostingerApi
      * @throws HostingerApiException
      */
     public function clientWhoisProfileCreate($client_id, $title, array $ns_list, array $contact) {
+        if(!isset($contact['owner']) || empty($contact['owner'])) {
+            throw new HostingerApiException('Owner contact is missing.');
+        }
+
+        $contact_types = array(
+            'owner',
+            'technical',
+            'administrative',
+            'billing',
+        );
+
+        $required_contact_fields = array(
+            'email',
+            'first_name',
+            'last_name',
+            'address_1',
+            'city',
+            'state',
+            'zip',
+            'country',
+            'phone',
+            'phone_cc',
+        );
+
+        foreach($contact_types as $contact_type) {
+            if($contact_type != 'owner' && !isset($contact[$contact_type])) {
+                $contact[$contact_type] = $contact['owner'];
+            }
+            foreach($required_contact_fields as $field) {
+                if(!isset($contact[$contact_type][$field]) || empty($contact[$contact_type][$field])) {
+                    throw new HostingerApiException($contact_type . ' field ' . $field . ' is missing or empty.');
+                }
+            }
+        }
+
         $params = array(
             'client_id' => $client_id,
             'title' => $title,
