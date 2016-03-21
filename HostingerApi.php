@@ -320,6 +320,17 @@ class HostingerApi
     }
 
     /**
+     * @param array $result
+     * @return array
+     */
+    public function getValidationErrorsForResult($result) {
+        if(isset($result['validation']) && !empty($result['validation'])) {
+            return $result['validation'];
+        }
+        return array();
+    }
+
+    /**
      * @param string $url
      * @param string $method
      * @param array $post_fields
