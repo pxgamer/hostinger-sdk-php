@@ -286,6 +286,22 @@ class HostingerApi
     }
 
     /**
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function countryGetList() {
+        return $this->make_call('v1/settings/country-list', 'GET', array());
+    }
+
+    /**
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function countryPhoneCodeGetList() {
+        return $this->make_call('v1/settings/phone-code-list', 'GET', array());
+    }
+
+    /**
      * @return string
      */
     private function getIp()
