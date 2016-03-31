@@ -269,11 +269,7 @@ class HostingerApi
      * @throws HostingerApiException
      */
     public function domainIsAvailable($domain) {
-        $params = array(
-            'domain' => $domain
-        );
-        $result = $this->make_call('v1/domain/available', 'GET', $params);
-
+        $result = $this->make_call('v1/domain/available?domain='.$domain, 'GET');
         return isset($result['available']) ? $result['available'] : false;
     }
 
