@@ -319,7 +319,7 @@ class HostingerApi
      * @throws HostingerApiException
      * @return array
      */
-    public function sendMailEventToClient($event, $client_id, $params) {
+    public function sendMailEventToClient($event, $client_id, $params = array()) {
         $params['client_id'] = $client_id;
         return $this->make_call('v1/mail/send/'.strtolower($event), 'POST', $params);
     }
