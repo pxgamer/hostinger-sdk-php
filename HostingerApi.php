@@ -312,6 +312,32 @@ class HostingerApi
     }
 
     /**
+     * Send transactional email for known client
+     * @param string $event - event code name
+     * @param int $client_id - client ID
+     * @param array $params - params for the email template
+     * @throws HostingerApiException
+     * @return array
+     */
+    public function sendMailEventToClient($event, $client_id, $params) {
+        $params['client_id'] = $client_id;
+        return $this->make_call('v1/mail/send/'.strtolower($event), 'POST', $params);
+    }
+
+    /**
+     * Send transactional email when client id is not known, but email
+     * @param string $event - event code name
+     * @param string $email - valid email address
+     * @param array $params - params for the email template
+     * @throws HostingerApiException
+     * @return array
+     */
+    public function sendMailEventToEmail($event, $email, $params = array()) {
+        $params['email'] = strtolower($email);
+        return $this->make_call('v1/mail/send/'.strtolower($event), 'POST', $params);
+    }
+
+    /**
      * @return string
      */
     private function getIp()

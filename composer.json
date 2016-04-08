@@ -1,5 +1,6 @@
 {
   "name": "hostinger/hostinger-sdk-php",
+  "version": "1.0.1",
   "description": "Cpanel API",
   "require": {
     "ext-curl": "*",
