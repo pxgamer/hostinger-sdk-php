@@ -312,6 +312,14 @@ class HostingerApi
     }
 
     /**
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function knowledgeBaseGetList() {
+        return $this->make_call('v1/settings/knowledgebase', 'GET', array());
+    }
+
+    /**
      * Send transactional email for known client
      * @param string $event - event code name
      * @param int $client_id - client ID
