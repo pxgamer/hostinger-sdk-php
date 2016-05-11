@@ -214,16 +214,17 @@ class HostingerApi
     /**
      * @param \Cart\Checkout $checkout
      * @param string $gatewayCode
+     * @param string $campaign (utm_campaign)
      *
      * @return array
      * @throws HostingerApiException
      */
-    public function cartOrderCreate($checkout, $gatewayCode)
+    public function cartOrderCreate($checkout, $gatewayCode, $campaign = '')
     {
         if (!$checkout instanceof \Cart\Checkout){
             throw new HostingerApiException('invalid checkout');
         }
-        return $this->make_call('v1/cart', 'POST', array('checkout'=> $checkout->toArray(), 'gateway_code' => $gatewayCode));
+        return $this->make_call('v1/cart', 'POST', array('checkout'=> $checkout->toArray(), 'gateway_code' => $gatewayCode, 'campaign' => $campaign));
     }
 
     /**
