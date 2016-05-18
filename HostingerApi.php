@@ -229,6 +229,19 @@ class HostingerApi
 
     /**
      * @param int $client_id
+     * @return boolean
+     * @throws HostingerApiException
+     */
+    public function cartAllowOrderFreeHosting($client_id)
+    {
+        if(empty($client_id)) {
+            throw new HostingerApiException('Client Id is missing.');
+        }
+        return $this->make_call('/v1/cart/allow-free-hosting/'.$client_id, 'GET', array());
+    }
+
+    /**
+     * @param int $client_id
      * @param string $redirect
      * @return string Url to cpanel auto login
      * @throws HostingerApiException
