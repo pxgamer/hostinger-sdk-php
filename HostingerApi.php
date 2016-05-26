@@ -288,6 +288,20 @@ class HostingerApi
     }
 
     /**
+     * @param $email
+     * @param $domain
+     * @return bool
+     * @throws HostingerApiException
+     */
+    public function domainLotteryEntry($email, $domain) {
+        $params = array(
+            'email'       => $email,
+            'domain'       => $domain,
+        );
+        return $this->make_call('v1/domain/lottery_entry', 'POST', $params);
+    }
+
+    /**
      * @return array
      * @throws HostingerApiException
      */
