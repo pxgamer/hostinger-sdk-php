@@ -302,11 +302,20 @@ class HostingerApi
     }
 
     /**
+     * @param integer $client_id
+     * @param float $amount
      * @return array
      * @throws HostingerApiException
      */
-    public function paymentGatewayGetList() {
-        return $this->make_call('v1/settings/payment-gateway-list', 'GET', array());
+    public function paymentGatewayGetList($client_id = null, $amount = null) {
+        $params = array();
+        if(!empty($client_id)) {
+            $params['client_id'] = $client_id;
+        }
+        if(!empty($amount)) {
+            $params['amount'] = $amount;
+        }
+        return $this->make_call('v1/settings/payment-gateway-list', 'GET', $params);
     }
 
     /**
