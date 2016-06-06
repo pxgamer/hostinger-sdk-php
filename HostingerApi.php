@@ -464,7 +464,9 @@ class HostingerApi
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
                 break;
             case 'get' :
-                $url .= '?'.http_build_query($post_fields, null, '&');
+                if(!empty($post_fields)) {
+                    $url .= '?'.http_build_query($post_fields, null, '&');
+                }
                 break;
         }
 
