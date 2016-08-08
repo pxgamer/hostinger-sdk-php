@@ -383,6 +383,20 @@ class HostingerApi
     }
 
     /**
+     * @param $email - client email
+     * @param $score - nps score 1 - 10
+     * @return boolean
+     * @throws HostingerApiException
+     */
+    public function reviewNetPromotionScoreCreate($email, $score) {
+        $params = array(
+            'email' => $email,
+            'recommend' => $score,
+        );
+        return $this->make_call('v1/review/nps', 'POST', $params);
+    }
+
+    /**
      * @return string
      */
     private function getIp()
