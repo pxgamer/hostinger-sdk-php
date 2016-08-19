@@ -325,9 +325,10 @@ class HostingerApi
      * @return array
      * @throws HostingerApiException
      */
-    public function oauthProviderGetList($redirect_url) {
+    public function oauthProviderGetList($redirect_url, $is_cart = 0) {
         $params = array(
-            'redirect' => $redirect_url
+            'redirect' => $redirect_url,
+            'is_cart' => $is_cart
         );
         return $this->make_call('v1/settings/oauth-list', 'POST', $params);
     }
