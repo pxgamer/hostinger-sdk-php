@@ -465,8 +465,6 @@ class HostingerApi
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
-        $ip = $this->getIp();
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array("REMOTE_ADDR: $ip", "HTTP_X_FORWARDED_FOR: $ip"));
 
         if ($user && $password) {
             curl_setopt($ch, CURLOPT_USERPWD, "$user:$password");
