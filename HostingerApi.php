@@ -416,6 +416,15 @@ class HostingerApi
     }
 
     /**
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function getTlds()
+    {
+        return $this->make_call('v1/domain/tlds', 'GET');
+    }
+
+    /**
      * @param string $cmd
      * @param string $method
      * @param array $post_fields
