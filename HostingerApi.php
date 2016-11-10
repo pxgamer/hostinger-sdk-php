@@ -453,6 +453,46 @@ class HostingerApi
     }
 
     /**
+     * @param array $params
+     * @return array
+     */
+    public function registerDomainWithClient($params = array())
+    {
+        $defaultParams = array(
+            'client' => array(
+                'email'                    => '',
+                'password'                 => '',
+                'first_name'               => '',
+                'country'                  => '',
+                'client_ip'                => '',
+                'last_name'                => '',
+                'company'                  => '',
+                'address_1'                => '',
+                'address_2'                => '',
+                'city'                     => '',
+                'state'                    => '',
+                'zip'                      => '',
+                'phone_cc'                 => '',
+                'phone'                    => '',
+                'reseller_client_campaign' => false, // optional
+            ),
+            'order'  => array(
+                'service'   => 'domain',
+                'client_ip' => '',
+                'domain'    => 'test-domain-name.lt',
+                'years'     => 1,
+                'action'    => 'register',
+                'campaign'  => 'any name' // optional
+            )
+        );
+
+        $post = array_replace_recursive($defaultParams, $params);
+
+        return $this->make_call('v1/order/create-order-with-client', 'POST', $post);
+    }
+
+
+    /**
      * @param string $url
      * @param string $method
      * @param array $post_fields
@@ -506,4 +546,8 @@ class HostingerApi
         curl_close($ch);
         return $data;
     }
+    
+
+
+    
 }
