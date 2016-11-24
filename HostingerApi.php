@@ -453,9 +453,9 @@ class HostingerApi
     }
 
     /**
- * @param array $params
- * @return array
- */
+     * @param array $params
+     * @return array
+     */
     public function registerDomainWithClient($params = array())
     {
         $defaultParams = array(
