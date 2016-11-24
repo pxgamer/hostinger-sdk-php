@@ -453,9 +453,9 @@ class HostingerApi
     }
 
     /**
-     * @param array $params
-     * @return array
-     */
+ * @param array $params
+ * @return array
+ */
     public function registerDomainWithClient($params = array())
     {
         $defaultParams = array(
@@ -491,6 +491,16 @@ class HostingerApi
         return $this->make_call('v1/order/create-order-with-client', 'POST', $post);
     }
 
+
+    /**
+     * @param numeric $invoice_id
+     * Generated Auto Login to Invoice link
+     * @return array
+     */
+    public function getAutoLoginLinkByInvoiceId($invoice_id)
+    {
+        return $this->make_call('v1/client/get-manage-domain-link-by-invoice-id/'.$invoice_id, 'GET');
+    }
 
     /**
      * @param string $url
