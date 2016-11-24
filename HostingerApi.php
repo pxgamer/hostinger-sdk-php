@@ -493,6 +493,16 @@ class HostingerApi
 
 
     /**
+     * @param numeric $invoice_id
+     * Generated Auto Login to Invoice link
+     * @return array
+     */
+    public function getAutoLoginLinkByInvoiceId($invoice_id)
+    {
+        return $this->make_call('v1/client/get-manage-domain-link-by-invoice-id/'.$invoice_id, 'GET');
+    }
+
+    /**
      * @param string $url
      * @param string $method
      * @param array $post_fields
