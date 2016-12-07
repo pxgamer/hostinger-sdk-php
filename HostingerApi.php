@@ -389,11 +389,15 @@ class HostingerApi
      * @return boolean
      * @throws HostingerApiException
      */
-    public function reviewNetPromotionScoreCreate($email, $score, $comment = '') {
+    public function reviewNetPromotionScoreCreate($email, $score, $comment = '', $account_type = '', $account_reason = '', $account_important = '', $account_not_important = '') {
         $params = array(
             'email' => $email,
             'recommend' => $score,
             'comment' => $comment,
+            'account_type' => $account_type,
+            'account_reason' => $account_reason,
+            'account_important' => $account_important,
+            'account_not_important' => $account_not_important,
         );
         return $this->make_call('v1/review/nps', 'POST', $params);
     }
