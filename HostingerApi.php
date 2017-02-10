@@ -403,6 +403,16 @@ class HostingerApi
     }
 
     /**
+     * Get approved list of reviews
+     * @throws HostingerApiException
+     * @return array
+     */
+    public function getReviews()
+    {
+        return $this->make_call('v1/review/approved_list');
+    }
+
+    /**
      * @return string
      */
     private function getIp()
