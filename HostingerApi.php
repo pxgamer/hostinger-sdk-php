@@ -212,6 +212,17 @@ class HostingerApi
     }
 
     /**
+     * Get Cart catalog
+     *
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function cartCatalog()
+    {
+        return $this->make_call('v1/cart/catalog');
+    }
+
+    /**
      * @param \Cart\Checkout $checkout
      * @param string $gatewayCode
      * @param string $campaign (utm_campaign)
