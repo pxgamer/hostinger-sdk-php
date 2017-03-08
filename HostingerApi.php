@@ -336,10 +336,11 @@ class HostingerApi
      * @return array
      * @throws HostingerApiException
      */
-    public function oauthProviderGetList($redirect_url, $is_cart = 0) {
+    public function oauthProviderGetList($redirect_url, $is_cart = 0, $utm_campaign = 0) {
         $params = array(
             'redirect' => $redirect_url,
-            'is_cart' => $is_cart
+            'is_cart' => $is_cart,
+            'utm_campaign' => $utm_campaign
         );
         return $this->make_call('v1/settings/oauth-list', 'POST', $params);
     }
