@@ -425,6 +425,20 @@ class HostingerApi
     }
 
     /**
+     * Retrieves a list of resellers where a client has an account
+     * @param $email
+     * @param $password
+     * @return array
+     */
+    public function clientGetAllByEmailAndPassword($email, $password) {
+        $params = array(
+            'email' => $email,
+            'pass'  => $password,
+        );
+        return $this->make_call('v1/client/multi-list', 'POST', $params);
+    }
+
+    /**
      * @return string
      */
     private function getIp()
