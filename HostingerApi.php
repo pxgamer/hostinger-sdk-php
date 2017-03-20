@@ -596,8 +596,10 @@ class HostingerApi
         curl_close($ch);
         return $data;
     }
-    
 
+    public function happiness_score(array $params) {
+        return $this->make_call('v1/review/happiness_score', 'POST', $params);
+    }
 
     
 }
