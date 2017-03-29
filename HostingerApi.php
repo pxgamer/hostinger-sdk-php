@@ -251,6 +251,16 @@ class HostingerApi
         return $this->make_call('v1/cart/allow-free-hosting/'.$client_id, 'GET', array());
     }
 
+    public function cartAllowItemAdd($slug, $params = array())
+    {
+        if(empty($slug)) {
+            throw new HostingerApiException('slug is missing.');
+        }
+
+        $params['slug'] = $slug;
+        return $this->make_call('v1/cart/allow-item-add', 'GET', $params);
+    }
+
     /**
      * @param int $client_id
      * @param string $redirect
