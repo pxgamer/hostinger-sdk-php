@@ -456,7 +456,8 @@ class HostingerApi
         $address = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null;
         if (is_string($address)) {
             if (strpos($address, ',') !== false) {
-                $address = end(explode(',', $address));
+                $address = explode(',', $address);
+                $address = end($address);
             }
         }
         if (is_null($address)) {
