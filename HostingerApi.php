@@ -227,15 +227,17 @@ class HostingerApi
      * @param string $gatewayCode
      * @param string $campaign (utm_campaign)
      *
+     * @param string $ip
+     * @param null $affiliateId
      * @return array
      * @throws HostingerApiException
      */
-    public function cartOrderCreate($checkout, $gatewayCode, $campaign = '', $ip = '')
+    public function cartOrderCreate($checkout, $gatewayCode, $campaign = '', $ip = '', $affiliateId = null)
     {
         if (!$checkout instanceof \Cart\Checkout){
             throw new HostingerApiException('invalid checkout');
         }
-        return $this->make_call('v1/cart', 'POST', array('checkout'=> $checkout->toArray(), 'gateway_code' => $gatewayCode, 'campaign' => $campaign, 'ip' => $ip));
+        return $this->make_call('v1/cart', 'POST', array('checkout'=> $checkout->toArray(), 'gateway_code' => $gatewayCode, 'campaign' => $campaign, 'ip' => $ip, 'affiliate_idev' => $affiliateId));
     }
 
     /**
