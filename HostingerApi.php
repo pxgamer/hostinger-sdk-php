@@ -310,6 +310,19 @@ class HostingerApi
         return isset($result['available']) ? $result['available'] : false;
     }
 
+
+    /**
+     * @param $domain
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function domainIsTransferable($domain)
+    {
+        return $this->make_call('v1/domain/transferable', 'GET', array(
+            'domain' => $domain,
+        ));
+    }
+
     /**
      * @param $email
      * @param $domain
@@ -489,7 +502,7 @@ class HostingerApi
         $result = $this->get_url($this->api_url.$cmd, $method, $post_fields, $this->username, $this->password);
         $result = json_decode($result, 1);
         if (isset($result['error']['message']) && !empty($result['error']['message'])) {
-            throw new HostingerApiException($result['error']['message']);
+            throw new HostingerApiException($result['error']['message'], isset($result['error']['code']) ? $result['error']['code'] : 0);
         }
         return $result['result'];
     }
