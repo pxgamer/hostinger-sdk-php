@@ -278,7 +278,7 @@ class HostingerApi
         if(empty($order_id)) {
             throw new HostingerApiException('Order  Id is missing.');
         }
-        return $this->make_call("admin/reseller/client/order/$order_id/client/$client_id", 'GET', array());
+        return $this->make_call("v1/cart/order/$order_id/client/$client_id", 'GET', array());
     }
 
     /**
