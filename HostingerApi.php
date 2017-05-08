@@ -264,6 +264,24 @@ class HostingerApi
     }
 
     /**
+     * @param int $order_id
+     * @param int $client_id
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function cartCheckUpgradeOrderAndClient($order_id, $client_id)
+    {
+        if(empty($client_id)) {
+            throw new HostingerApiException('Client Id is missing.');
+        }
+
+        if(empty($order_id)) {
+            throw new HostingerApiException('Order  Id is missing.');
+        }
+        return $this->make_call("/admin/reseller/client/order/$order_id/client/$client_id", 'GET', array());
+    }
+
+    /**
      * @param int $client_id
      * @param string $redirect
      * @return string Url to cpanel auto login
