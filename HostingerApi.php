@@ -253,6 +253,21 @@ class HostingerApi
         return $this->make_call('v1/cart/allow-free-hosting/'.$client_id, 'GET', array());
     }
 
+
+    /**
+     * @param int $client_id
+     * @return boolean
+     * @throws HostingerApiException
+     */
+    public function cartHasPricedProducts($client_id)
+    {
+        if(empty($client_id)) {
+            throw new HostingerApiException('Client Id is missing.');
+        }
+
+        return $this->make_call('v1/cart/has-priced-products/' . $client_id, 'GET', array());
+    }
+
     public function cartAllowItemAdd($slug, $params = array())
     {
         if(empty($slug)) {
@@ -512,7 +527,7 @@ class HostingerApi
      * @param string $cmd
      * @param string $method
      * @param array $post_fields
-     * @return array
+     * @return mixed
      * @throws HostingerApiException
      */
     private function make_call($cmd, $method = 'GET', $post_fields = array())
