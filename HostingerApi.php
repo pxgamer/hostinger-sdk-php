@@ -660,5 +660,8 @@ class HostingerApi
         return $this->make_call('v1/review/happiness_score', 'POST', $params);
     }
 
+    public function is_registered_at_hostinger(array $params) {
+        return $this->make_call('v1/domain/registered-here', 'POST', $params);
+    }
     
 }
