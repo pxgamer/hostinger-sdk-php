@@ -127,6 +127,7 @@ class HostingerApi
             'referral_id' => '',
             'reseller_client_campaign' => '',
             'reseller_client_campaign_source' => '',
+            'delegate_access_hash' => '',
             'r' => '',
         );
 
@@ -302,11 +303,24 @@ class HostingerApi
      * @return string Url to cpanel auto login
      * @throws HostingerApiException
      */
-    public function clientGetAutoLoginUrl($client_id, $redirect = ''){
+    public function clientGetAutoLoginUrl($client_id, $redirect = '', $additionalParams = array()){
         $params = array(
             'r' => $redirect
         );
-        return $this->make_call('v1/client/'.$client_id.'/login-url', 'GET', $params);
+        $allParams = array_merge($additionalParams, $params);
+        return $this->make_call('v1/client/'.$client_id.'/login-url', 'GET', $allParams);
+    }
+
+    /**
+     * @param $access_hash
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function getDelegateAccessInfoByHash($access_hash){
+        $params = array(
+            'access_hash' => $access_hash
+        );
+        return $this->make_call('v1/client/delegate-access', 'GET', $params);
     }
 
     /**
