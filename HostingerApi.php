@@ -335,6 +335,18 @@ class HostingerApi
      * @throws HostingerApiException
      */
     public function mailSend($from_email, $from_name, $to_email, $to_name, $subject, $content_html, $content_txt) {
+        if (!filter_var($from_email, FILTER_VALIDATE_EMAIL)){
+            throw new HostingerApiException('Sender email is not valid');
+        }
+
+        if (!filter_var($to_email, FILTER_VALIDATE_EMAIL)){
+            throw new HostingerApiException('Receiver email is not valid');
+        }
+
+        $from_name = filter_var($from_name, FILTER_SANITIZE_STRING);
+        $to_name = filter_var($to_name, FILTER_SANITIZE_STRING);
+        $subject = filter_var($subject, FILTER_SANITIZE_STRING);
+
         $params = array(
             'subject'       => $subject,
             'from_email'    => $from_email,
