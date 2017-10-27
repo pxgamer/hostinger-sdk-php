@@ -82,6 +82,18 @@ class HostingerApi
         );
         return $this->make_call('v1/client/get-by-email-password', 'POST', $params);
     }
+    
+    /**
+     * @param string $email
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function clientGetByEmailOauthOnly($email){
+        $params = array(
+            'email' => $email
+        );
+        return $this->make_call('v1/client/get-oauth-by-email', 'GET', $params);
+    }
 
     /**
      * @param string $email
