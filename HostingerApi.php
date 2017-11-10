@@ -702,4 +702,16 @@ class HostingerApi
         return $this->make_call('v1/domain/registered-here', 'POST', $params);
     }
     
+    /**
+     * Unlinks social by email
+     * @param $email
+     * @return array
+     */
+    public function unlinkOauthByEmail($email) {
+        $params = array(
+            'email' => $email
+        );
+        return $this->make_call('v1/client/unlink-social-by-email', 'POST', $params);
+    }
+    
 }
