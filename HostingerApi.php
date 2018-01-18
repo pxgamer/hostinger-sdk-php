@@ -266,6 +266,19 @@ class HostingerApi
         return $this->make_call('v1/cart/allow-free-hosting/'.$client_id, 'GET', array());
     }
 
+    /**
+     * @param int $client_id
+     * @return boolean
+     * @throws HostingerApiException
+     */
+    public function cartAllowOrderTrial($client_id)
+    {
+        if(empty($client_id)) {
+            throw new HostingerApiException('Client Id is missing.');
+        }
+        return $this->make_call('v1/cart/allow-free-trial/'.$client_id, 'GET', array());
+    }
+
 
     /**
      * @param int $client_id
