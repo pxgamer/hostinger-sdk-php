@@ -726,5 +726,41 @@ class HostingerApi
         );
         return $this->make_call('v1/client/unlink-social-by-email', 'POST', $params);
     }
-    
+
+    /**
+     * @param $username
+     * @return array
+     */
+    public function sshKeyGetList($username) {
+        $params = array(
+            'username' => $username
+        );
+        return $this->make_call('v1/ssh-key/list', 'GET', $params);
+    }
+
+    /**
+     * @param $username
+     * @param $pubkey
+     * @return bool
+     */
+    public function sshKeyAdd($username, $pubkey) {
+        $params = array(
+            'username' => $username,
+            'pubkey' => $pubkey
+        );
+        return $this->make_call('v1/ssh-key/add', 'POST', $params);
+    }
+
+    /**
+     * @param $username
+     * @param $pubkey
+     * @return bool
+     */
+    public function sshKeyRemove($username, $pubkey) {
+        $params = array(
+            'username' => $username,
+            'pubkey' => $pubkey
+        );
+        return $this->make_call('v1/ssh-key/remove', 'POST', $params);
+    }
 }
