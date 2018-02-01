@@ -25,10 +25,11 @@ class HostingerApi
      * @param string $email
      * @param string $subject
      * @param string $content
+     * @param array $additional
      * @return array
      * @throws HostingerApiException
      */
-    public function publicTicketCreate($name, $email, $subject, $content){
+    public function publicTicketCreate($name, $email, $subject, $content, $additional = array()){
         $params = array(
             'name' => $name,
             'email' => $email,
@@ -36,6 +37,9 @@ class HostingerApi
             'content' => $content,
             'ip' => $this->getIp(),
         );
+
+        $params = array_merge($params, $additional);
+
         return $this->make_call('v1/ticket/create_public', 'POST', $params);
     }
 
