@@ -1,5 +1,7 @@
 <?php
 
+namespace Hostinger\HostingerApi;
+
 class HostingerApi
 {
     protected $username = '';
